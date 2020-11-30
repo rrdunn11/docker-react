@@ -1,0 +1,50 @@
+
+* npm run start
+* npm run test
+* npm run build
+
+docker build -f Dockerfile.dev .
+docker run a9a13f3a5b2a4eea3b
+docker run -p 3000:3000 a9a13f3a5b2a4eea3b
+
+Volumes:
+* Reference to the local machine from container
+
+docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id>
+
+Run test:
+docker run -it 4c5b1877ec5cb2a npm run test
+-it: stdin and pseudo terminal
+
+To talk to specific container, use docker attach <container_id>
+    docker attach talks to the main process in container (PID 1)
+docker ps to get running containers
+docker exec -it <container_id> sh
+
+Prod env:
+Need production server instead of dev server
+Nginx server is used
+
+* Use node:alpine
+* Copy the package.json
+* Install dependencies
+* Run "np run build"
+* Start Nginx
+Notes:
+* dependencies only needed to execute "npm run build"
+* Where does nginx come from?
+
+Multistep build process:
+Build phase:
+* Use node:alpine
+* Copy package.json
+* install dependencies
+* run 'npm run build'
+Run Phase:
+* use nginx
+* copy over result of 'npm run build'
+* Start nginx
+
+Create docker file and run "docker build ." and docker run -p 8080:80 <image_id>
+
+
