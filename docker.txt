@@ -48,3 +48,9 @@ Run Phase:
 Create docker file and run "docker build ." and docker run -p 8080:80 <image_id>
 
 
+Travis CI
+* Tell travis we need copy of docker running
+* build image using Dockerfile.dev
+* Tell Travis how to run our test suite
+* Tell travis how to deploy our code to AWS
+
